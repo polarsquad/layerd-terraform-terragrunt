@@ -6,6 +6,7 @@ variable "accounts" {
     iam_user_access_to_billing = optional(string, "ALLOW")
     parent_id                  = optional(string)
     role_name                  = optional(string, "Admin")
+    close_on_deletion          = optional(bool, false)
     tags                       = optional(map(string), {})
   }))
   default = {}

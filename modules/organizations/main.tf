@@ -10,6 +10,7 @@ resource "aws_organizations_account" "accounts" {
   parent_id                  = each.value.parent_id
   role_name                  = each.value.role_name
   tags                       = each.value.tags
+  close_on_deletion          = each.value.close_on_deletion
 
   depends_on = [aws_organizations_organization.organization]
 }
