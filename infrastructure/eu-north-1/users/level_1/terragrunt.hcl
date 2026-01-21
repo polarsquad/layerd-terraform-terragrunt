@@ -11,4 +11,16 @@ terraform {
 
 inputs = {
   enable_users_self_manage = true
+  enable_developer_groups  = true
+
+  developer_groups = {
+    devs_develop = {
+      group_name       = "DevelopersDevelop"
+      assume_role_arns = ["arn:aws:iam::${dependency.layer_0.outputs.accounts["develop"].id}:role/Developer"]
+    }
+    devs_production = {
+      group_name       = "DevelopersProduction"
+      assume_role_arns = ["arn:aws:iam::${dependency.layer_0.outputs.accounts["production"].id}:role/Developer"]
+    }
+  }
 }

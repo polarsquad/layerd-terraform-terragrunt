@@ -12,7 +12,7 @@ data "template_file" "trust_relationship" {
     {
       "Effect": "Allow",
       "Principal": {
-        "AWS": "${trusted_entity}"
+        "AWS": "${var.trusted_entity}"
       },
       "Action": "sts:AssumeRole",
       "Condition": {

@@ -11,13 +11,15 @@ data "template_file" "assume_role" {
   template = <<TEMPLATE
 {
   "Version": "2012-10-17",
-  "Statement": {
-    "Effect": "Allow",
-    "Action": "sts:AssumeRole",
-    "Resource": ${roles_arns_json}
-  }
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "sts:AssumeRole",
+      "Resource": $${roles_arns_json}
+    }
+  ]
 }
-TEMPLATE
+TEMPLATE  
 
   vars = {
     roles_arns_json = jsonencode(var.assume_role_arns)
