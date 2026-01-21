@@ -31,3 +31,13 @@ variable "developer_groups" {
   }))
   default = {}
 }
+
+variable "users" {
+  description = "Map of IAM users to create"
+  type = map(object({
+    name    = string
+    pgp_key = string
+    groups  = list(string)
+  }))
+  default = {}
+}

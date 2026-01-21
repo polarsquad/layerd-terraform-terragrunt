@@ -18,3 +18,12 @@ module "developer_groups" {
   group_name       = each.value.group_name
   assume_role_arns = each.value.assume_role_arns
 }
+
+module "users" {
+  for_each = var.users
+  source   = "../../modules/users"
+
+  name    = each.value.name
+  pgp_key = each.value.pgp_key
+  groups  = each.value.groups
+}

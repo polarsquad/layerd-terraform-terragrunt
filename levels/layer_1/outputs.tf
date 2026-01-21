@@ -29,3 +29,24 @@ output "developer_groups" {
     }
   } : null
 }
+
+output "users" {
+  description = "Outputs from IAM users"
+  value = length(var.users) > 0 ? {
+    for k, v in module.users : k => {
+      user_name      = v.user_name
+      user_arn       = v.user_arn
+      user_unique_id = v.user_unique_id
+      access_key_id  = v.access_key_id
+    }
+  } : null
+  sensitive = true
+}
+
+output "users_credentials" {
+  description = "Encrypted credentials for IAM users"
+  value = length(var.users) > 0 ? {
+    for k, v in module.users : k => v.summary
+  } : null
+  sensitive = true
+}
